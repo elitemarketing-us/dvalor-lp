@@ -16,8 +16,8 @@
   --purple:#9d00ff;
   --purple-2:#6b18e8;
   --purple-3:#d65cff;
-  --green:#06e261;
-  --green-2:#20ff82;
+  --green:#09df66;
+  --green-2:#2bff8a;
   --line:rgba(255,255,255,.10);
   --shadow:0 30px 80px rgba(0,0,0,.5);
   --radius:26px;
@@ -65,10 +65,11 @@ button,a{-webkit-tap-highlight-color:transparent}
 .checks{display:grid;gap:12px;margin:24px 0 32px}
 .check{display:flex;gap:12px;align-items:flex-start;color:#f4eff7;font-size:16px}
 .check i{font-style:normal;display:grid;place-items:center;flex:0 0 24px;height:24px;border-radius:7px;background:linear-gradient(180deg,var(--green-2),#03b84d);color:#001608;font-weight:900;box-shadow:0 8px 30px rgba(6,226,97,.23)}
-.cta{display:inline-flex;align-items:center;justify-content:center;gap:11px;position:relative;overflow:hidden;min-height:58px;padding:0 25px;border-radius:14px;background:linear-gradient(180deg,var(--green-2),#05cc57);color:#021008;font-size:15px;font-weight:950;letter-spacing:.025em;text-transform:uppercase;box-shadow:0 15px 40px rgba(6,226,97,.26),inset 0 1px 0 rgba(255,255,255,.6);transition:transform .25s ease,box-shadow .25s ease}
-.cta::after{content:"";position:absolute;inset:-40% auto -40% -25%;width:22%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);animation:shine 3.6s ease-in-out infinite}
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:11px;position:relative;overflow:hidden;min-height:58px;padding:0 25px;border-radius:14px;border:1px solid rgba(69,255,139,.28);background:linear-gradient(105deg,#00c853 0%,#05e665 32%,#1df17b 62%,#00c94f 100%);color:#011208;font-size:15px;font-weight:950;letter-spacing:.025em;text-transform:uppercase;box-shadow:0 15px 38px rgba(6,226,97,.24),0 0 18px rgba(18,230,103,.08);transition:transform .25s ease,box-shadow .25s ease,filter .25s ease}
+.cta::before{display:none}
+.cta::after{display:none}
 @keyframes shine{0%,45%{left:-30%}70%,100%{left:130%}}
-.cta:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 20px 55px rgba(6,226,97,.34),0 0 0 5px rgba(6,226,97,.08)}
+.cta:hover{transform:translateY(-2px);filter:saturate(1.04) brightness(1.02);box-shadow:0 19px 46px rgba(6,226,97,.30),0 0 0 4px rgba(35,240,125,.06)}
 .cta svg{width:18px;height:18px}
 .hero-micro{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;color:#bdb2c7;font-size:12px}
 .hero-micro span{display:inline-flex;align-items:center;gap:7px}
@@ -158,20 +159,15 @@ button,a{-webkit-tap-highlight-color:transparent}
 
 .mentor{overflow:hidden}
 .mentor-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.mentor-collage{position:relative;min-height:650px}
-.photo-main,.photo-small{position:absolute;overflow:hidden;border-radius:26px;border:1px solid rgba(255,255,255,.13);box-shadow:var(--shadow);background:#0e0a12}
-.photo-main{inset:0 11% 11% 0}
-.photo-main img,.photo-small img{width:100%;height:100%;object-fit:cover}
-.photo-small{width:43%;height:42%;right:0;bottom:0;transform:rotate(2.4deg)}
+.mentor-visual{position:relative;min-height:650px;border-radius:32px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#0d0912;box-shadow:var(--shadow)}
+.mentor-visual img{width:100%;height:100%;display:block;object-fit:cover;object-position:center top}
+.mentor-visual::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,7,18,.06) 0%,rgba(31,8,50,.14) 36%,rgba(15,6,24,.40) 68%,rgba(8,4,12,.68) 100%);pointer-events:none}
+.mentor-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,4,10,.10) 0%,rgba(38,10,58,0) 28%,rgba(40,8,62,.18) 62%,rgba(12,7,18,.72) 100%);pointer-events:none}
 .mentor-copy h2{font-size:clamp(42px,5vw,66px);line-height:.95;letter-spacing:-.05em;margin:0 0 24px}
 .mentor-copy p{color:#c6bbc9;line-height:1.6;font-size:18px}
 .mentor-bullets{display:grid;gap:13px;margin:28px 0}
 .mentor-bullets div{display:flex;gap:12px;line-height:1.45}
 .mentor-bullets div::before{content:"•";color:#b74fff;font-size:30px;line-height:.8}
-
-.bottom-gallery{display:grid;grid-template-columns:1.35fr .65fr;gap:16px;margin-top:50px}
-.bottom-gallery .wide,.bottom-gallery .portrait{border-radius:26px;overflow:hidden;border:1px solid var(--line);min-height:420px}
-.bottom-gallery img{width:100%;height:100%;object-fit:cover}
 
 footer{padding:56px 0 100px;border-top:1px solid var(--line);color:#918698;text-align:center;font-size:13px}
 
@@ -192,7 +188,7 @@ footer{padding:56px 0 100px;border-top:1px solid var(--line);color:#918698;text-
   .feedback-grid{columns:2}
   .method-shell{grid-template-columns:1fr;gap:35px}.sticky-copy{position:static}
   .offer-grid,.mentor-grid{grid-template-columns:1fr}
-  .mentor-collage{min-height:560px}
+  .mentor-visual{min-height:560px}
   .bonuses{grid-template-columns:1fr}
 }
 @media (max-width:700px){
@@ -264,8 +260,7 @@ footer{padding:56px 0 100px;border-top:1px solid var(--line);color:#918698;text-
   .imagine-copy{padding:30px}
   .offer-box{padding:28px 18px}
   .price-panel{padding:26px 16px}
-  .mentor-collage{min-height:430px}
-  .bottom-gallery{grid-template-columns:1fr}.bottom-gallery .wide,.bottom-gallery .portrait{min-height:330px}
+  .mentor-visual{min-height:430px}
   .mobile-cta{display:block}
   footer{padding-bottom:120px}
 }
@@ -478,9 +473,8 @@ footer{padding:56px 0 100px;border-top:1px solid var(--line);color:#918698;text-
 <section class="section mentor">
   <div class="wrap">
     <div class="mentor-grid">
-      <div class="mentor-collage reveal">
-        <div class="photo-main"><img src="assets/yago-seminar.png" loading="lazy" alt="Yago Molina palestrando" /></div>
-        <div class="photo-small"><img src="assets/yago-chair.png" loading="lazy" alt="Yago Molina em treinamento" /></div>
+      <div class="mentor-visual reveal">
+        <img src="assets/yago-mentor-premium.png" loading="lazy" alt="Yago Molina segurando um microfone" />
       </div>
       <div class="mentor-copy reveal">
         <div class="kicker">Quem é o seu Mentor?</div>
@@ -496,10 +490,6 @@ footer{padding:56px 0 100px;border-top:1px solid var(--line);color:#918698;text-
         <p>Hoje, lidera o movimento Palestrante D-Valor, ajudando especialistas a fazerem de R$10.000 a R$30.000/mês ou mais vendendo seus serviços através de suas palestras.</p>
         <a class="cta" href="https://pay.kiwify.com.br/NaFZoeq" target="_blank" rel="noopener">QUERO COMEÇAR AGORA</a>
       </div>
-    </div>
-    <div class="bottom-gallery">
-      <div class="wide reveal"><img src="assets/yago-black-suit.png" loading="lazy" alt="Yago Molina palestrando" /></div>
-      <div class="portrait reveal"><img src="assets/yago-chair-2.png" loading="lazy" alt="Yago Molina em sala" /></div>
     </div>
   </div>
 </section>
