@@ -54,7 +54,8 @@ button,a{-webkit-tap-highlight-color:transparent}
 .hero::after{content:"";position:absolute;inset:auto 0 0;height:220px;background:linear-gradient(180deg,transparent,var(--bg));z-index:-1}
 .hero-glow{position:absolute;width:620px;height:620px;left:-220px;top:150px;border-radius:50%;background:radial-gradient(circle,rgba(143,0,255,.18),transparent 62%);filter:blur(2px);z-index:-2;animation:floatGlow 9s ease-in-out infinite alternate}
 @keyframes floatGlow{to{transform:translate(70px,-35px) scale(1.08)}}
-.hero-content{padding:78px 0 120px;max-width:760px}
+.hero-content{padding:78px 0 120px;max-width:760px;display:flex;flex-direction:column}
+.hero-top,.hero-bottom{display:flex;flex-direction:column}
 .hero-badge{display:inline-flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid rgba(186,90,255,.35);background:rgba(102,16,147,.16);border-radius:999px;color:#e7c3ff;font-weight:700;font-size:13px;backdrop-filter:blur(12px)}
 .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 14px var(--green)}
 .hero h1{margin:22px 0 20px;font-size:clamp(46px,6.7vw,86px);line-height:.92;letter-spacing:-.06em;max-width:900px}
@@ -194,11 +195,54 @@ footer{padding:56px 0 100px;border-top:1px solid var(--line);color:#918698;text-
   .wrap{width:min(calc(100% - 26px),var(--max))}
   .section{padding:76px 0}
   .announce{font-size:12px;padding:10px 14px}
-  .hero{min-height:auto}
-  .hero::before{background-image:linear-gradient(180deg,rgba(4,2,7,.28) 0%,rgba(4,2,7,.54) 34%,rgba(4,2,7,.98) 67%,#050308 100%),url('assets/hero.png');background-position:68% top;background-size:auto 58vh;background-repeat:no-repeat}
-  .hero-content{padding:54vh 0 72px;max-width:none}
-  .hero h1{font-size:clamp(44px,14vw,66px)}
-  .hero .main-copy{font-size:25px}
+  .hero{min-height:860px;display:block}
+  .hero::before{
+    background-image:
+      linear-gradient(180deg,rgba(4,2,7,.10) 0%,rgba(4,2,7,.14) 20%,rgba(4,2,7,.46) 45%,rgba(4,2,7,.78) 61%,#050308 100%),
+      linear-gradient(90deg,rgba(4,2,7,.82) 0%,rgba(4,2,7,.52) 34%,rgba(4,2,7,.18) 62%,rgba(4,2,7,.08) 100%),
+      url('assets/hero.png');
+    background-position:72% top;
+    background-size:cover;
+    background-repeat:no-repeat;
+  }
+  .hero-glow{width:420px;height:420px;left:-150px;top:210px;opacity:.9}
+  .hero-content{
+    max-width:none;
+    min-height:860px;
+    padding:22px 0 58px;
+    display:grid;
+    grid-template-rows:1fr auto;
+    align-content:end;
+  }
+  .hero-top{
+    align-self:end;
+    max-width:66%;
+    padding-top:0;
+    margin-bottom:18px;
+    position:relative;
+    z-index:2;
+  }
+  .hero-bottom{
+    margin-top:0;
+    max-width:100%;
+    position:relative;
+    z-index:2;
+  }
+  .hero-badge{margin-bottom:14px}
+  .hero h1{
+    max-width:100%;
+    margin:0;
+    font-size:clamp(36px,12vw,58px);
+    line-height:.92;
+    text-wrap:pretty;
+    text-shadow:0 10px 34px rgba(0,0,0,.34);
+  }
+  .hero .main-copy{font-size:22px;max-width:100%}
+  .hero .sub-copy{font-size:15.5px;max-width:100%;margin:18px 0}
+  .checks{margin:18px 0 22px}
+  .check{font-size:15px}
+  .cta{width:100%}
+  .hero-micro{gap:10px;margin-top:16px}
   .grid-4,.profile-grid{grid-template-columns:1fr}
   .problem-card{min-height:auto}
   .stats{grid-template-columns:1fr}
@@ -213,6 +257,15 @@ footer{padding:56px 0 100px;border-top:1px solid var(--line);color:#918698;text-
   .mobile-cta{display:block}
   footer{padding-bottom:120px}
 }
+@media (max-width:430px){
+  .hero{min-height:820px}
+  .hero-content{min-height:820px;padding:18px 0 56px}
+  .hero::before{background-position:74% top;background-size:cover}
+  .hero-top{max-width:72%;margin-bottom:16px}
+  .hero h1{max-width:100%;font-size:clamp(34px,11.4vw,50px)}
+  .hero .main-copy{font-size:20px}
+  .hero .sub-copy{font-size:15px}
+}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.hero-glow,.cta::after{animation:none}.case,.problem-card,.step,.cta{transition:none}
 }
@@ -225,18 +278,22 @@ footer{padding:56px 0 100px;border-top:1px solid var(--line);color:#918698;text-
 <header class="hero" id="top">
   <div class="hero-glow"></div>
   <div class="wrap hero-content">
-    <div class="hero-badge reveal"><span class="dot"></span> TREINAMENTO 100% GRAVADO</div>
-    <h1 class="reveal" data-delay="1"><span>TRILHA DA PALESTRA ESCALÁVEL</span></h1>
-    <div class="main-copy reveal" data-delay="2">Como especialistas estão usando palestras para reunir potenciais clientes e fechar de R$ 30k à R$ 50k em contratos e serviços - sem depender de indicação.</div>
-    <p class="sub-copy reveal" data-delay="3">Esse é um treinamento 100% gravado, direto ao ponto. Onde você vai estruturar sua palestra, aprender a vender no palco e montar um sistema para vender toda semana.</p>
-    <div class="checks reveal" data-delay="3">
-      <div class="check"><i>✓</i><span>Para quem deseja ter um canal próprio de conversão de clientes</span></div>
-      <div class="check"><i>✓</i><span>Para quem quer transformar conhecimento em dinheiro no bolso.</span></div>
+    <div class="hero-top">
+      <div class="hero-badge reveal"><span class="dot"></span> TREINAMENTO 100% GRAVADO</div>
+      <h1 class="reveal" data-delay="1"><span>TRILHA DA PALESTRA ESCALÁVEL</span></h1>
     </div>
-    <a class="cta reveal" data-delay="4" href="https://pay.kiwify.com.br/NaFZoeq" target="_blank" rel="noopener">CLIQUE PARA GARANTIR ACESSO
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-    <div class="hero-micro reveal" data-delay="5"><span>100% gravado</span><span>menos de 2 horas</span><span>pagamento único</span></div>
+    <div class="hero-bottom">
+      <div class="main-copy reveal" data-delay="2">Como especialistas estão usando palestras para reunir potenciais clientes e fechar de R$ 30k à R$ 50k em contratos e serviços - sem depender de indicação.</div>
+      <p class="sub-copy reveal" data-delay="3">Esse é um treinamento 100% gravado, direto ao ponto. Onde você vai estruturar sua palestra, aprender a vender no palco e montar um sistema para vender toda semana.</p>
+      <div class="checks reveal" data-delay="3">
+        <div class="check"><i>✓</i><span>Para quem deseja ter um canal próprio de conversão de clientes</span></div>
+        <div class="check"><i>✓</i><span>Para quem quer transformar conhecimento em dinheiro no bolso.</span></div>
+      </div>
+      <a class="cta reveal" data-delay="4" href="https://pay.kiwify.com.br/NaFZoeq" target="_blank" rel="noopener">CLIQUE PARA GARANTIR ACESSO
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="hero-micro reveal" data-delay="5"><span>100% gravado</span><span>menos de 2 horas</span><span>pagamento único</span></div>
+    </div>
   </div>
 </header>
 
